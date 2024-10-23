@@ -55,8 +55,14 @@ function init() {
   let vz = -Math.cos(pi / 4);
 
   function moveBall(delta) {
-    vBall.set(vx, 0, vz)
-    ball.position.addScaledVector(vBall, delta * speed);
+    if(ballLive){
+      vBall.set(vx, 0, vz)
+      ball.position.addScaledVector(vBall, delta * speed);
+    }
+    else {
+      ball.position.x = paddle.position.x;
+      ball.position.z = paddle.position.z - (paddleR + ballR);
+    }
   }
 
   // ボールの死活
